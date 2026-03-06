@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>გამოცდების პლატფორმა</title>
+    <link href="https://fonts.googleapis.com/css2?family=BPG+Arial+2009&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/style/style.css">
+</head>
+    <body>
+        <!-- LANDING -->
+        <div id="page-landing" class="page active">
+          <div class="landing-container">
+            <div class="logo-badge">გამოცდების პლატფორმა</div>
+            <h1 class="landing-title">სწავლის<br>სივრცე</h1>
+            <p class="landing-sub">თანამედროვე პლატფორმა მასწავლებლებისა და მოსწავლეებისთვის — შექმენი, ჩააბარე, განვითარდი.</p>
+            <div class="role-cards">
+              <div class="role-card" onclick="showPage('page-teacher-login')">
+                <span class="role-icon">👨‍🏫</span>
+                <div class="role-title">მასწავლებელი</div>
+                <div class="role-desc">შექმენი გამოცდები, მართე კლასი, ნახე შედეგები.</div>
+                <div class="role-arrow">შესვლა →</div>
+              </div>
+              <div class="role-card student" onclick="showPage('page-student-login')">
+                <span class="role-icon">🎓</span>
+                <div class="role-title">მოსწავლე</div>
+                <div class="role-desc">ჩააბარე გამოცდები, ნახე ქულები, ისწავლე.</div>
+                <div class="role-arrow">შესვლა →</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- TEACHER LOGIN/REGISTER -->
+        <div id="page-teacher-login" class="page">
+          <div style="display:flex;align-items:center;justify-content:center;min-height:100vh;padding:2rem;">
+            <div class="auth-box">
+              <button class="auth-back" onclick="showPage('page-landing')">← მთავარი გვერდი</button>
+              <div class="toggle-tabs">
+                <div class="toggle-tab active" id="t-login-tab" onclick="switchAuthTab('teacher','login')">შესვლა</div>
+                <div class="toggle-tab" id="t-register-tab" onclick="switchAuthTab('teacher','register')">რეგისტრაცია</div>
+              </div>
+        
+              <!-- Login Form -->
+              <div id="t-login-form">
+                <h2 class="auth-title">👨‍🏫 მასწავლებელი</h2>
+                <p class="auth-subtitle">შედი შენს ანგარიშზე</p>
+                <div class="form-group">
+                  <label class="form-label">ელ. ფოსტა</label>
+                  <input type="email" id="t-login-email" class="form-input" placeholder="magalitvad@school.ge">
+                </div>
+                <div class="form-group">
+                  <label class="form-label">პაროლი</label>
+                  <input type="password" id="t-login-pass" class="form-input" placeholder="••••••••">
+                </div>
+                <button class="btn btn-primary" onclick="teacherLogin()" style="margin-top:0.5rem;">შესვლა</button>
+                <div class="error-msg" id="t-login-error"></div>
+              </div>
+        
+              <!-- Register Form -->
+              <div id="t-register-form" style="display:none;">
+                <h2 class="auth-title">👨‍🏫 რეგისტრაცია</h2>
+                <p class="auth-subtitle">შექმენი მასწავლებლის ანგარიში</p>
+                <div class="form-group">
+                  <label class="form-label">სახელი და გვარი</label>
+                  <input type="text" id="t-reg-name" class="form-input" placeholder="გიორგი კვარაცხელია">
+                </div>
+                <div class="form-group">
+                  <label class="form-label">ელ. ფოსტა</label>
+                  <input type="email" id="t-reg-email" class="form-input" placeholder="magalitvad@school.ge">
+                </div>
+                <div class="form-group">
+                  <label class="form-label">პაროლი</label>
+                  <input type="password" id="t-reg-pass" class="form-input" placeholder="მინ. 6 სიმბოლო">
+                </div>
+                <button class="btn btn-primary" onclick="teacherRegister()" style="margin-top:0.5rem;">რეგისტრაცია</button>
+                <div class="error-msg" id="t-reg-error"></div>
+                <div class="success-msg" id="t-reg-success"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- STUDENT LOGIN/REGISTER -->
+        <div id="page-student-login" class="page">
+          <div style="display:flex;align-items:center;justify-content:center;min-height:100vh;padding:2rem;">
+            <div class="auth-box student-box">
+              <button class="auth-back" onclick="showPage('page-landing')">← მთავარი გვერდი</button>
+              <div class="toggle-tabs">
+                <div class="toggle-tab active" id="s-login-tab" onclick="switchAuthTab('student','login')">შესვლა</div>
+                <div class="toggle-tab" id="s-register-tab" onclick="switchAuthTab('student','register')">რეგისტრაცია</div>
+              </div>
+        
+              <!-- Login Form -->
+              <div id="s-login-form">
+                <h2 class="auth-title">🎓 მოსწავლე</h2>
+                <p class="auth-subtitle">შედი შენს ანგარიშზე</p>
+                <div class="form-group">
+                  <label class="form-label">ელ. ფოსტა</label>
+                  <input type="email" id="s-login-email" class="form-input" placeholder="magalitvad@school.ge">
+                </div>
+                <div class="form-group">
+                  <label class="form-label">პაროლი</label>
+                  <input type="password" id="s-login-pass" class="form-input" placeholder="••••••••">
+                </div>
+                <button class="btn btn-purple" onclick="studentLogin()" style="margin-top:0.5rem;">შესვლა</button>
+                <div class="error-msg" id="s-login-error"></div>
+              </div>
+        
+              <!-- Register Form -->
+              <div id="s-register-form" style="display:none;">
+                <h2 class="auth-title">🎓 რეგისტრაცია</h2>
+                <p class="auth-subtitle">შექმენი მოსწავლის ანგარიში</p>
+                <div class="form-group">
+                  <label class="form-label">სახელი და გვარი</label>
+                  <input type="text" id="s-reg-name" class="form-input" placeholder="ნინო გელაშვილი">
+                </div>
+                <div class="form-group">
+                  <label class="form-label">ელ. ფოსტა</label>
+                  <input type="email" id="s-reg-email" class="form-input" placeholder="magalitvad@school.ge">
+                </div>
+                <div class="form-group">
+                  <label class="form-label">პაროლი</label>
+                  <input type="password" id="s-reg-pass" class="form-input" placeholder="მინ. 6 სიმბოლო">
+                </div>
+                <button class="btn btn-purple" onclick="studentRegister()" style="margin-top:0.5rem;">რეგისტრაცია</button>
+                <div class="error-msg" id="s-reg-error"></div>
+                <div class="success-msg" id="s-reg-success"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- TEACHER DASHBOARD -->
+        <div id="page-teacher-dash" class="page">
+          <div class="dashboard">
+            <aside class="sidebar">
+              <div class="sidebar-logo">
+                <div class="sidebar-logo-icon">📚</div>
+                <div>
+                  <div class="sidebar-logo-text">გამოცდები</div>
+                  <div class="sidebar-logo-sub">მასწავლებლის პანელი</div>
+                </div>
+              </div>
+              <nav class="sidebar-nav">
+                <div class="sidebar-section">მთავარი</div>
+                <button class="nav-item active" onclick="switchPanel('teacher','dashboard')">
+                  <span class="nav-icon">🏠</span> მთავარი
+                </button>
+                <div class="sidebar-section">გამოცდები</div>
+                <button class="nav-item" onclick="switchPanel('teacher','create')">
+                  <span class="nav-icon">✏️</span> გამოცდის შექმნა
+                </button>
+                <button class="nav-item" onclick="switchPanel('teacher','my-exams')">
+                  <span class="nav-icon">📋</span> ჩემი გამოცდები
+                </button>
+                <button class="nav-item" onclick="switchPanel('teacher','results')">
+                  <span class="nav-icon">📊</span> შედეგები
+                </button>
+              </nav>
+              <div class="sidebar-user">
+                <div class="user-info">
+                  <div class="user-avatar" id="t-avatar">მ</div>
+                  <div>
+                    <div class="user-name" id="t-user-name">მასწავლებელი</div>
+                    <div class="user-role">მასწავლებელი</div>
+                  </div>
+                </div>
+                <button class="btn-logout" onclick="logout()">🚪 გასვლა</button>
+              </div>
+            </aside>
+            <main class="main-content">
+              <!-- Dashboard Panel -->
+              <div class="panel active" id="panel-teacher-dashboard">
+                <div class="page-header">
+                  <h1>მოგესალმები! 👋</h1>
+                  <p>ეს არის შენი სასწავლო პანელი</p>
+                </div>
+                <div class="stats-grid" id="t-stats"></div>
+                <div class="card">
+                  <div class="card-header">
+                    <div class="card-title">ბოლო გამოცდები</div>
+                    <button class="btn btn-outline btn-sm" onclick="switchPanel('teacher','my-exams')">ყველა →</button>
+                  </div>
+                  <div id="t-recent-exams"></div>
+                </div>
+              </div>
+        
+              <!-- Create Exam Panel -->
+              <div class="panel" id="panel-teacher-create">
+                <div class="page-header">
+                  <h1>✏️ გამოცდის შექმნა</h1>
+                  <p>შეავსე ფორმა ახალი გამოცდის შესაქმნელად</p>
+                </div>
+                <div class="card create-exam-form">
+                  <div class="form-group">
+                    <label class="form-label">გამოცდის სახელი *</label>
+                    <input type="text" id="exam-title" class="form-input" placeholder="მაგ: მათემატიკა - თავი 5">
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">აღწერა</label>
+                    <input type="text" id="exam-desc" class="form-input" placeholder="მოკლე აღწერა (არასავალდებულო)">
+                  </div>
+                  <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
+                    <div class="form-group">
+                      <label class="form-label">საგანი</label>
+                      <input type="text" id="exam-subject" class="form-input" placeholder="მაგ: მათემატიკა">
+                    </div>
+                    <div class="form-group">
+                      <label class="form-label">კლასი / ჯგუფი</label>
+                      <input type="text" id="exam-class" class="form-input" placeholder="მაგ: X-ბ">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">ხანგრძლივობა (წუთი)</label>
+                    <input type="number" id="exam-duration" class="form-input" placeholder="60" min="1" max="300" value="30">
+                  </div>
+                  <hr class="section-divider">
+                  <div class="card-header" style="margin-bottom:1rem;">
+                    <div class="card-title">კითხვები</div>
+                    <button class="btn btn-outline btn-sm" onclick="addQuestion()">+ კითხვის დამატება</button>
+                  </div>
+                  <div class="questions-builder" id="questions-builder"></div>
+                  <div style="margin-top:1.5rem;display:flex;gap:1rem;">
+                    <button class="btn btn-primary" onclick="saveExam()" style="flex:1;">💾 გამოცდის შენახვა</button>
+                    <button class="btn btn-outline" onclick="clearExamForm()">გასუფთავება</button>
+                  </div>
+                  <div class="error-msg" id="exam-error"></div>
+                  <div class="success-msg" id="exam-success"></div>
+                </div>
+              </div>
+        
+              <!-- My Exams Panel -->
+              <div class="panel" id="panel-teacher-my-exams">
+                <div class="page-header">
+                  <h1>📋 ჩემი გამოცდები</h1>
+                  <p>შენ მიერ შექმნილი გამოცდების სია</p>
+                </div>
+                <div class="card">
+                  <div class="card-header">
+                    <div class="card-title">გამოცდები</div>
+                    <button class="btn btn-primary btn-sm" onclick="switchPanel('teacher','create')">+ ახალი</button>
+                  </div>
+                  <div class="exam-list" id="t-exams-list"></div>
+                </div>
+              </div>
+        
+              <!-- Results Panel -->
+              <div class="panel" id="panel-teacher-results">
+                <div class="page-header">
+                  <h1>📊 მოსწავლეთა შედეგები</h1>
+                  <p>ნახე მოსწავლეების შედეგები შენს გამოცდებში</p>
+                </div>
+                <div class="card">
+                  <div class="card-header">
+                    <div class="card-title">ყველა შედეგი</div>
+                  </div>
+                  <div id="t-results-content"></div>
+                </div>
+              </div>
+            </main>
+          </div>
+        </div>
+        
+        <!-- STUDENT DASHBOARD -->
+        <div id="page-student-dash" class="page student-dash">
+          <div class="dashboard">
+            <aside class="sidebar">
+              <div class="sidebar-logo">
+                <div class="sidebar-logo-icon">🎓</div>
+                <div>
+                  <div class="sidebar-logo-text">გამოცდები</div>
+                  <div class="sidebar-logo-sub">მოსწავლის პანელი</div>
+                </div>
+              </div>
+              <nav class="sidebar-nav">
+                <div class="sidebar-section">მთავარი</div>
+                <button class="nav-item active" onclick="switchPanel('student','dashboard')">
+                  <span class="nav-icon">🏠</span> მთავარი
+                </button>
+                <div class="sidebar-section">გამოცდები</div>
+                <button class="nav-item" onclick="switchPanel('student','available')">
+                  <span class="nav-icon">📝</span> ხელმისაწვდომი გამოცდები
+                </button>
+                <button class="nav-item" onclick="switchPanel('student','my-results')">
+                  <span class="nav-icon">🏆</span> ჩემი შედეგები
+                </button>
+              </nav>
+              <div class="sidebar-user">
+                <div class="user-info">
+                  <div class="user-avatar" id="s-avatar" style="background:linear-gradient(135deg,#8b5cf6,#06b6d4);">მ</div>
+                  <div>
+                    <div class="user-name" id="s-user-name">მოსწავლე</div>
+                    <div class="user-role">მოსწავლე</div>
+                  </div>
+                </div>
+                <button class="btn-logout" onclick="logout()">🚪 გასვლა</button>
+              </div>
+            </aside>
+            <main class="main-content">
+              <!-- Dashboard -->
+              <div class="panel active" id="panel-student-dashboard">
+                <div class="page-header">
+                  <h1>მოგესალმები! 🎓</h1>
+                  <p>შეამოწმე შენი პროგრესი</p>
+                </div>
+                <div class="stats-grid" id="s-stats"></div>
+                <div class="card">
+                  <div class="card-header">
+                    <div class="card-title">ბოლო შედეგები</div>
+                    <button class="btn btn-outline btn-sm" onclick="switchPanel('student','my-results')">ყველა →</button>
+                  </div>
+                  <div id="s-recent-results"></div>
+                </div>
+              </div>
+        
+              <!-- Available Exams -->
+              <div class="panel" id="panel-student-available">
+                <div class="page-header">
+                  <h1>📝 ხელმისაწვდომი გამოცდები</h1>
+                  <p>გამოცდები, რომლებიც ჩასაბარებელია</p>
+                </div>
+                <div class="card">
+                  <div class="card-header"><div class="card-title">გამოცდები</div></div>
+                  <div class="exam-list" id="s-exams-list"></div>
+                </div>
+              </div>
+        
+              <!-- My Results -->
+              <div class="panel" id="panel-student-my-results">
+                <div class="page-header">
+                  <h1>🏆 ჩემი შედეგები</h1>
+                  <p>შენ მიერ ჩაბარებული გამოცდები</p>
+                </div>
+                <div id="s-results-list"></div>
+              </div>
+        
+              <!-- Take Exam Panel -->
+              <div class="panel" id="panel-student-take-exam">
+                <div id="take-exam-content"></div>
+              </div>
+        
+              <!-- Exam Result Panel -->
+              <div class="panel" id="panel-student-exam-result">
+                <div id="exam-result-content"></div>
+              </div>
+            </main>
+          </div>
+        </div>
+        
+        <!-- DELETE MODAL -->
+        <div class="modal-overlay" id="delete-modal">
+          <div class="modal">
+            <div class="modal-title">გამოცდის წაშლა</div>
+            <div class="modal-sub">დარწმუნებული ხარ? ეს მოქმედება შეუქცევადია და ყველა შედეგიც წაიშლება.</div>
+            <div class="modal-actions">
+              <button class="btn btn-outline" onclick="closeDeleteModal()">გაუქმება</button>
+              <button class="btn btn-danger" onclick="confirmDelete()">წაშლა</button>
+            </div>
+          </div>
+        </div>
+        
+        <!-- TOAST -->
+        <div class="toast" id="toast">
+          <span id="toast-icon">✅</span>
+          <span id="toast-msg">შენახულია!</span>
+        </div>
+
+        <script src="assets/scripts/Main.js" defer></script>
+    </body>
+</html>
