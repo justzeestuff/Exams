@@ -11,20 +11,20 @@
         <!-- LANDING -->
         <div id="page-landing" class="page active">
           <div class="landing-container">
-            <div class="logo-badge">გამოცდების პლატფორმა</div>
+            <div class="logo-badge">ტესტების პლატფორმა</div>
             <h1 class="landing-title">სწავლის<br>სივრცე</h1>
-            <p class="landing-sub">თანამედროვე პლატფორმა მასწავლებლებისა და მოსწავლეებისთვის — შექმენი, ჩააბარე, განვითარდი.</p>
+            <p class="landing-sub">თანამედროვე პლატფორმა მასწავლებლებისა და მოსწავლეებისთვის.</p>
             <div class="role-cards">
               <div class="role-card" onclick="showPage('page-teacher-login')">
                 <span class="role-icon">👨‍🏫</span>
                 <div class="role-title">მასწავლებელი</div>
-                <div class="role-desc">შექმენი გამოცდები, მართე კლასი, ნახე შედეგები.</div>
+                <div class="role-desc">ტესტის შექმნა, მართე კლასი, შედეგები.</div>
                 <div class="role-arrow">შესვლა →</div>
               </div>
               <div class="role-card student" onclick="showPage('page-student-login')">
                 <span class="role-icon">🎓</span>
                 <div class="role-title">მოსწავლე</div>
-                <div class="role-desc">ჩააბარე გამოცდები, ნახე ქულები, ისწავლე.</div>
+                <div class="role-desc">ტესტის დაწერა, შედეგები, ისწავლე.</div>
                 <div class="role-arrow">შესვლა →</div>
               </div>
             </div>
@@ -137,7 +137,7 @@
               <div class="sidebar-logo">
                 <div class="sidebar-logo-icon">📚</div>
                 <div>
-                  <div class="sidebar-logo-text">გამოცდები</div>
+                  <div class="sidebar-logo-text">ტესტები</div>
                   <div class="sidebar-logo-sub">მასწავლებლის პანელი</div>
                 </div>
               </div>
@@ -146,12 +146,12 @@
                 <button class="nav-item active" onclick="switchPanel('teacher','dashboard')">
                   <span class="nav-icon">🏠</span> მთავარი
                 </button>
-                <div class="sidebar-section">გამოცდები</div>
+                <div class="sidebar-section">ტესტები</div>
                 <button class="nav-item" onclick="switchPanel('teacher','create')">
-                  <span class="nav-icon">✏️</span> გამოცდის შექმნა
+                  <span class="nav-icon">✏️</span> ტესტის შექმნა
                 </button>
                 <button class="nav-item" onclick="switchPanel('teacher','my-exams')">
-                  <span class="nav-icon">📋</span> ჩემი გამოცდები
+                  <span class="nav-icon">📋</span> ჩემი ტესტები
                 </button>
                 <button class="nav-item" onclick="switchPanel('teacher','results')">
                   <span class="nav-icon">📊</span> შედეგები
@@ -178,7 +178,7 @@
                 <div class="stats-grid" id="t-stats"></div>
                 <div class="card">
                   <div class="card-header">
-                    <div class="card-title">ბოლო გამოცდები</div>
+                    <div class="card-title">ბოლო ტესტები</div>
                     <button class="btn btn-outline btn-sm" onclick="switchPanel('teacher','my-exams')">ყველა →</button>
                   </div>
                   <div id="t-recent-exams"></div>
@@ -188,12 +188,12 @@
               <!-- Create Exam Panel -->
               <div class="panel" id="panel-teacher-create">
                 <div class="page-header">
-                  <h1>✏️ გამოცდის შექმნა</h1>
-                  <p>შეავსე ფორმა ახალი გამოცდის შესაქმნელად</p>
+                  <h1>✏️ ტესტის შექმნა</h1>
+                  <p>შეავსე ფორმა ახალი ტესტის შესაქმნელად</p>
                 </div>
                 <div class="card create-exam-form">
                   <div class="form-group">
-                    <label class="form-label">გამოცდის სახელი *</label>
+                    <label class="form-label">ტესტის სახელი *</label>
                     <input type="text" id="exam-title" class="form-input" placeholder="მაგ: მათემატიკა - თავი 5">
                   </div>
                   <div class="form-group">
@@ -221,7 +221,7 @@
                   </div>
                   <div class="questions-builder" id="questions-builder"></div>
                   <div style="margin-top:1.5rem;display:flex;gap:1rem;">
-                    <button class="btn btn-primary" onclick="saveExam()" style="flex:1;">💾 გამოცდის შენახვა</button>
+                    <button class="btn btn-primary" onclick="saveExam()" style="flex:1;">💾 ტესტის შენახვა</button>
                     <button class="btn btn-outline" onclick="clearExamForm()">გასუფთავება</button>
                   </div>
                   <div class="error-msg" id="exam-error"></div>
@@ -232,12 +232,12 @@
               <!-- My Exams Panel -->
               <div class="panel" id="panel-teacher-my-exams">
                 <div class="page-header">
-                  <h1>📋 ჩემი გამოცდები</h1>
-                  <p>შენ მიერ შექმნილი გამოცდების სია</p>
+                  <h1>📋 ჩემი ტესტები</h1>
+                  <p>შენ მიერ შექმნილი ტესტების სია</p>
                 </div>
                 <div class="card">
                   <div class="card-header">
-                    <div class="card-title">გამოცდები</div>
+                    <div class="card-title">ტესტები</div>
                     <button class="btn btn-primary btn-sm" onclick="switchPanel('teacher','create')">+ ახალი</button>
                   </div>
                   <div class="exam-list" id="t-exams-list"></div>
@@ -248,7 +248,7 @@
               <div class="panel" id="panel-teacher-results">
                 <div class="page-header">
                   <h1>📊 მოსწავლეთა შედეგები</h1>
-                  <p>ნახე მოსწავლეების შედეგები შენს გამოცდებში</p>
+                  <p>ნახე მოსწავლეების შედეგები შენს ტესტში</p>
                 </div>
                 <div class="card">
                   <div class="card-header">
@@ -268,7 +268,7 @@
               <div class="sidebar-logo">
                 <div class="sidebar-logo-icon">🎓</div>
                 <div>
-                  <div class="sidebar-logo-text">გამოცდები</div>
+                  <div class="sidebar-logo-text">ტესტები</div>
                   <div class="sidebar-logo-sub">მოსწავლის პანელი</div>
                 </div>
               </div>
@@ -277,9 +277,9 @@
                 <button class="nav-item active" onclick="switchPanel('student','dashboard')">
                   <span class="nav-icon">🏠</span> მთავარი
                 </button>
-                <div class="sidebar-section">გამოცდები</div>
+                <div class="sidebar-section">ტესტები</div>
                 <button class="nav-item" onclick="switchPanel('student','available')">
-                  <span class="nav-icon">📝</span> ხელმისაწვდომი გამოცდები
+                  <span class="nav-icon">📝</span> ხელმისაწვდომი ტესტები
                 </button>
                 <button class="nav-item" onclick="switchPanel('student','my-results')">
                   <span class="nav-icon">🏆</span> ჩემი შედეგები
@@ -316,11 +316,11 @@
               <!-- Available Exams -->
               <div class="panel" id="panel-student-available">
                 <div class="page-header">
-                  <h1>📝 ხელმისაწვდომი გამოცდები</h1>
-                  <p>გამოცდები, რომლებიც ჩასაბარებელია</p>
+                  <h1>📝 ხელმისაწვდომი ტესტები</h1>
+                  <p>ტესტები, რომლებიც ჩასაბარებელია</p>
                 </div>
                 <div class="card">
-                  <div class="card-header"><div class="card-title">გამოცდები</div></div>
+                  <div class="card-header"><div class="card-title">ტესტები</div></div>
                   <div class="exam-list" id="s-exams-list"></div>
                 </div>
               </div>
@@ -329,7 +329,7 @@
               <div class="panel" id="panel-student-my-results">
                 <div class="page-header">
                   <h1>🏆 ჩემი შედეგები</h1>
-                  <p>შენ მიერ ჩაბარებული გამოცდები</p>
+                  <p>შენ მიერ ჩაბარებული ტესტები</p>
                 </div>
                 <div id="s-results-list"></div>
               </div>
@@ -350,7 +350,7 @@
         <!-- DELETE MODAL -->
         <div class="modal-overlay" id="delete-modal">
           <div class="modal">
-            <div class="modal-title">გამოცდის წაშლა</div>
+            <div class="modal-title">ტესტის წაშლა</div>
             <div class="modal-sub">დარწმუნებული ხარ? ეს მოქმედება შეუქცევადია და ყველა შედეგიც წაიშლება.</div>
             <div class="modal-actions">
               <button class="btn btn-outline" onclick="closeDeleteModal()">გაუქმება</button>
